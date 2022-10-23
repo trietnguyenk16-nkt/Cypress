@@ -93,6 +93,12 @@ m/
 n/ How find('locator') method will work in cypress? 
 => It will search and filter based on cy.get('locator')
 
+o/ function().then()  is the same with '=>' (both of them is to resolve a promise)
+p/ To handle child windows or child tab:
+
+Way 1: Remove target Attribute (should use this)
+Way 2: get Href Attribute and cy.visit(url from href attribute)
+(should not use this because cy.visit does not accept different domains or cross domains)
 INVESTIGATE:
 a/ when to use:
 + npm run cy:run
