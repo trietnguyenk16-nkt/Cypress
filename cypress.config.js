@@ -6,7 +6,11 @@ module.exports = defineConfig({
       // implement node event listeners here
       
     },
-    specPattern:"cypress/integration/examples/*.js",
-    supportFile:"cypress/support/e2e.js"
-  },
+    specPattern:"cypress/integration/*/*.js",
+    supportFile:"cypress/support/e2e.js",
+    defaultCommandTimeout: 8000,
+    env : {
+      url: "https://rahulshettyacademy.com/angularpractice/"
+    }
+  }
 });

@@ -1,6 +1,6 @@
 REFERENCE: https://docs.cypress.io/guides/guides/launching-browsers
 
-CYPRESS INSTALLATION AND PROJECT SET UP
+1/ CYPRESS INSTALLATION AND PROJECT SET UP
 + Download NodeJs
 + Set NodeJs home in environmental variables
 + Create Bas Cypress working folder
@@ -13,7 +13,7 @@ CYPRESS INSTALLATION AND PROJECT SET UP
 + Create first Cypress test case
 + Understand how to run tests from Test Runner and Command Line
 
-NOTES:
+2/ NOTES:
 a/ in root folder , use npx cypress run OR npx cypress open
 if want to run cypress in node_module/.bin
 
@@ -99,7 +99,33 @@ p/ To handle child windows or child tab:
 Way 1: Remove target Attribute (should use this)
 Way 2: get Href Attribute and cy.visit(url from href attribute)
 (should not use this because cy.visit does not accept different domains or cross domains)
-INVESTIGATE:
+
+q/ To change cypress default config => update cypress.config.js
+So the config will be applied to all
+https://docs.cypress.io/guides/references/configuration#Timeouts
+
+However, you can also override configuration values within your test using Cypress.config()
+https://docs.cypress.io/api/cypress-api/config#Examples 
+For example: declare this in TC (inside it('testcasse')):
+Cypress.config('defaultCommandTimeout', 8000)
+=> so the configuration is only applied to that TC
+
+To apply config for only 1 step: declare Cypress.config('defaultCommandTimeout', 8000) above the step
+=> so the configuration is only applied to the step and remainning below steps
+
+3/ SETTINGS UP TEST HOOKS
+Cypress supports Hooks provided by Mocha testing framework
+These are helpful to set conditions that you want to run before a set of tests or before each test.
+They're also helpful to clean up conditions after a set of tests or after each test.
+https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Test-Structure
+
+All before() hooks run (once)
+Any beforeEach() hooks run
+Tests run
+Any afterEach() hooks run
+All after() hooks run (once)
+
+4/ INVESTIGATE:
 a/ when to use:
 + npm run cy:run
 + npx cypress run
@@ -109,5 +135,6 @@ and what is the difference?
 b/ compare typescript and javascript
 c/ cypress use typescript or javascript?
 d/ describe, it belong to mocha. Does it belong to javascript or typescript also?
-
+e/ why cannot use this cy.get('input[name="name"]:nth-child(2)').invoke('attr','minlength').should('have.text','2')(ReadAttributeAndAssert.js)
+f/ need to know about difference about prop and attr of jquery
 
