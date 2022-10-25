@@ -125,7 +125,59 @@ Tests run
 Any afterEach() hooks run
 All after() hooks run (once)
 
-4/ INVESTIGATE:
+4/ Cypress retries
+https://docs.cypress.io/guides/guides/test-retries
+
+Add this to cypress.config.js
+retries: {
+        // Configure retry attempts for `cypress run`
+        // Default is 0
+        "runMode": 2,
+        // Configure retry attempts for `cypress open`
+        // Default is 0
+        "openMode": 0
+      }
+
+5/ To set up cypress command lines in shortcut
+Go to package.json , inside scripts, set up some shortcut command lines, such as:
+"scripts": {
+    "baseTest": "npx cypress run",
+    "test": "npx cypress run --spec cypress/integration/Framework/PageObjectsExample.js --reporter mochawesome",
+    "headTest": "npm run baseTest -- --headed",
+    "chromeTest": "npm run baseTest -- --browser chrome",
+    "recordDashboardTest": "npm run baseTest -- --record --key 615cca50-5876-44a4-af37-d5f8834c9c29"
+  }
+=> so when we want to run the test in HeadTest , just go for: npm run headTest
+instead of writting down long commands
+
+6/ To add some global configurations or environment configuration to cypress
+=> go to cypress.config.js then in env, set up some global/environment configurations
+example: 
+
+env : {
+      url: "https://rahulshettyacademy.com/angularpractice/"
+    }
+
+and in test case, we can call the url configurations by using this syntax: cy.visit(Cypress.env('url'))
+	
+7/ In order to run test, and update/show test process or report on cypress dashboard
+we must specify the key of dashboard in the command line
+such as: npx cypress run --record --key 615cca50-5876-44a4-af37-d5f8834c9c29 
+
+615cca50-5876-44a4-af37-d5f8834c9c29  is the key and can be gotten when you login to cypress dashboard of your organization
+
+8/ If we do not use cypress dashboard for the test report, we can use mochawesome instead
+Steps:
+1) Install mocha and mochawesome using npm
+npm mocha install --save-dev
+npm mochawesome install --save-dev
+
+2) in cypress.config.js add this:
+reporter: "mochawesome"
+
+3) when you run test case: it will create a report inside mochawesome-report under root folder of your automation project
+	
+8/ INVESTIGATE:
 a/ when to use:
 + npm run cy:run
 + npx cypress run

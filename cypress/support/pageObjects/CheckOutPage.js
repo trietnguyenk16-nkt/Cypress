@@ -13,7 +13,8 @@ class CheckOutPage {
     }
 
     getAgreeCheckbox() {
-        return cy.get('label[for="checkbox2"]')
+        //return cy.get('label[for="checkbox2"]')
+        return cy.get('#checkbox2')
     }
 
     getPurchaseButton() {

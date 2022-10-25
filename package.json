@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "baseTest": "npx cypress run",
+    "test": "npx cypress run --spec cypress/integration/Framework/PageObjectsExample.js --reporter mochawesome",
+    "headTest": "npm run baseTest -- --headed",
+    "chromeTest": "npm run baseTest -- --browser chrome",
+    "recordDashboardTest": "npm run baseTest -- --record --key 615cca50-5876-44a4-af37-d5f8834c9c29"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +16,8 @@
     "cypress": "^10.10.0",
     "cypress-iframe": "^1.0.1",
     "install": "^0.13.0",
+    "mocha": "^10.1.0",
+    "mochawesome": "^7.1.3",
     "npm": "^8.19.2"
   }
 }
